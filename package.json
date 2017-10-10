@@ -1,0 +1,25 @@
+{
+  "name": "jolimoi_test",
+  "version": "1.0.0",
+  "description": "Test for Jolimoi",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulExina/Jolimoi_Test.git"
+  },
+  "author": "Paul Exina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaulExina/Jolimoi_Test/issues"
+  },
+  "homepage": "https://github.com/PaulExina/Jolimoi_Test#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.1",
+    "materialize-css": "^0.100.2"
+  }
+}

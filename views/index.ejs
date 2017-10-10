@@ -1,0 +1,26 @@
+<html lang='en'>
+    <head>
+        <title>Jolimoi Test</title>
+
+        <link rel="stylesheet" type="text/css" href="lib/materialize-css/dist/css/materialize.min.css"  />
+        
+        <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="lib/materialize-css/dist/js/materialize.min.js"></script>
+        
+    </head>
+    <body>
+        <div class="row">
+                
+            <form method="post" class="col s12" action="convert">
+                    <div class="input-field col s6">
+                        <input placeholder="Enter a number between 1 and 100" name="number" type="text" class="validate">
+                    </div>
+                    <input type="submit" value="Convert">
+            </form>
+            <div>
+                <h1><%= converted_number %></h1>
+            </div>
+            
+        </div>
+    </body>
+</html>
