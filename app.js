@@ -7,11 +7,15 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/lib', express.static(path.join(__dirname,'node_modules')));
+app.use('/scripts', express.static(path.join(__dirname,'js')));
+app.use('/css', express.static(path.join(__dirname,'css')));
+app.use('/assets', express.static(path.join(__dirname,'assets')));
 
-let cnvrtd_number = "";
+let cnvrtd_number = "?";
+let number_to_cnvrt = 0;
 
 app.get('/', function(req, res) {
-    res.render('index.ejs',  {converted_number : cnvrtd_number} );
+    res.render('index.ejs',  {converted_number : cnvrtd_number, number_to_convert : number_to_cnvrt } );
 });
 
 function convert(number) {
@@ -32,17 +36,15 @@ function convert(number) {
         return "XL"+convert(number-40); 
     if(number >=50 && number<90) 
         return "L"+convert(number-50);
-    if(number >=90 && number<=98)
-        return "XC"+convert(number-90);   
-    if(number === 99)
-        return "IC";    
+    if(number >=90 && number<=99)
+        return "XC"+convert(number-90);    
     if(number === 100) 
         return "C";
 }
 
 app.post('/convert', function(req,res){
-    let number = req.body.number;
-    cnvrtd_number = convert(parseInt(number));
+    number_to_cnvrt = req.body.number;
+    cnvrtd_number = convert(parseInt(number_to_cnvrt));
 
     res.redirect('/');
 });

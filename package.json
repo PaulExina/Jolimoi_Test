@@ -4,7 +4,7 @@
   "description": "Test for Jolimoi",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node app.js"
   },
   "repository": {
@@ -18,8 +18,12 @@
   },
   "homepage": "https://github.com/PaulExina/Jolimoi_Test#readme",
   "dependencies": {
+    "chai": "^4.1.2",
     "ejs": "^2.5.7",
     "express": "^4.16.1",
-    "materialize-css": "^0.100.2"
+    "jquery-validation": "^1.17.0",
+    "materialize-css": "^0.100.2",
+    "request": "^2.83.0",
+    "supertest": "^3.0.0"
   }
 }

@@ -3,24 +3,53 @@
         <title>Jolimoi Test</title>
 
         <link rel="stylesheet" type="text/css" href="lib/materialize-css/dist/css/materialize.min.css"  />
+        <link href="https://fonts.googleapis.com/css?family=Cantarell:400,400i,700,700i|Josefin+Sans:400,400i,600,600i,700,700i" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/index.css"/>
         
         <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-validation/dist/jquery.validate.min.js"></script>
         <script type="text/javascript" src="lib/materialize-css/dist/js/materialize.min.js"></script>
-        
+
     </head>
     <body>
-        <div class="row">
-                
-            <form method="post" class="col s12" action="convert">
-                    <div class="input-field col s6">
-                        <input placeholder="Enter a number between 1 and 100" name="number" type="text" class="validate">
-                    </div>
-                    <input type="submit" value="Convert">
-            </form>
-            <div>
-                <h1><%= converted_number %></h1>
+        <div id="top">
+            <br/>
+            <br/>
+            <br/>
+            <div class="container" role="main">
+                <div class="row">
+                    <h1>Online conversion</h1>
+                    <h6>Convert a number between 1 and 100</h6>
+                    <br/>
+                    <h4>Basic rules </h4>
+                    <p>A smaller number in front of a larger number means subtraction, all else means addition. For example, IV means 4, VI means 6.<br/>
+                       You can not put more than one smaller number in front of a larger number to subtract. For example, IIV would not mean 3.<br/>
+                       You must separate ones, tens, hundreds, and thousands as separate items. That means that 99 is XCIX, 90 + 9, but never should be written as IC.</p>
+                    <br/> 
+                    <h4>Principal roman numbers </h4>
+                    <h5>I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000</h5>
+                </div>   
             </div>
-            
         </div>
+        <br/>
+        <br/>
+        <div id="bottom">
+            <div class="container">
+                <div class="row"> 
+                    <p>Enter a number between 1 and 100, then click 'Convert'</p>
+                    <form id="form" method="post" class="col s8 offset-s2" action="convert">
+                        <div class="input-field col s10">
+                            <label for="number">Enter a number between 1 and 100</label>
+                            <input id="number" name="number" type="text">
+                        </div>
+                        <input class="btn" type="submit" value="Convert">
+                    </form>             
+                </div>
+                <div class="row">
+                    <h1><%= number_to_convert %> => <%= converted_number %></h1>   
+                </div>
+            </div>
+        </div>      
+        <script type="text/javascript" src="scripts/form-validator.js"></script>
     </body>
 </html>
