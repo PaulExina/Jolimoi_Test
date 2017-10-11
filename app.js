@@ -2,20 +2,19 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
+const sseExpress = require('sse-express');
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/lib', express.static(path.join(__dirname,'node_modules')));
-app.use('/scripts', express.static(path.join(__dirname,'js')));
+app.use('/js', express.static(path.join(__dirname,'js')));
 app.use('/css', express.static(path.join(__dirname,'css')));
 app.use('/assets', express.static(path.join(__dirname,'assets')));
 
-let cnvrtd_number = "?";
-let number_to_cnvrt = 0;
 
 app.get('/', function(req, res) {
-    res.render('index.ejs',  {converted_number : cnvrtd_number, number_to_convert : number_to_cnvrt } );
+    res.render('index.ejs');
 });
 
 function convert(number) {
@@ -40,17 +39,30 @@ function convert(number) {
         return "XC"+convert(number-90);    
     if(number === 100) 
         return "C";
+
 }
+
+let cnvrtd_number = "?";
+let number_to_cnvrt = 0;
 
 app.post('/convert', function(req,res){
     number_to_cnvrt = req.body.number;
     cnvrtd_number = convert(parseInt(number_to_cnvrt));
 
-    res.redirect('/');
+    res.redirect("/");
 });
 
+app.get('/stream', sseExpress, function(req,res){
 
+    //send message to client
+    res.sse(
+        'converted',
+        {
+            converted_number : cnvrtd_number,
+            number_to_convert : number_to_cnvrt
+        }
+    );
+});
 
 console.log('Web server listening at: http://localhost:8080/');
-
 app.listen(8080);
