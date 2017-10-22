@@ -7,7 +7,7 @@ class Node{
 
         get toString(){
 
-            if( this.hasNext )
+            if( this.next != null )
                return this.index +" => "+this.next.toString;
             else   
                return this.index +" => null";
